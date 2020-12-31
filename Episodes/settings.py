@@ -124,3 +124,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn")
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_cdn")
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
