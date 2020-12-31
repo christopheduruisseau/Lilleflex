@@ -1,0 +1,83 @@
+{% extends 'tvshow/header.html' %}
+
+{% block content %}
+<script>
+  var my_list = {{ context.show_datalist_1 | safe }};
+  var selectedMovie = null;
+  var updateMovie = function (movie) {
+    selectedMovie = movie;
+    $("#selectedMoviePoster").attr('src', selectedMovie.Poster);
+    $("#selectedMovieTitle").text(selectedMovie.Title);
+    $("#selectedMovieActors").text(selectedMovie.Actors);
+    $("#selectedMoviePlot").text("Plot : " + selectedMovie.Plot);
+    $("#selectedMovieDirector").text("Directed by : " + selectedMovie.Director)
+    $("#selectedMovieReleased").text("Released : " + selectedMovie.Released)
+    $("#selectedMovieLanguage").text("Language :" + selectedMovie.Language)
+    $("#selectedMovieIMDB").text("Imdb rating :" + selectedMovie.imdbRating)
+    $("#selectedMovieRuntime").text("Duration : " + selectedMovie.Runtime)
+    $("#selectedMovieAwards").text(selectedMovie.Awards)
+  }
+</script>
+  
+<body style="background-color: lightgrey" ></body>
+
+<div class="container-fluid">
+  <div class="row justify-content-between mt-3 mb-5">
+    <div class="col">
+      <div class="card bg-transparent" style="cursor:pointer" onclick="updateMovie({{context.show_datalist_0}})">
+        <img class="card-img-top img-fluid" src={{ context.show_datalist_0.Poster }} alt="Card image cap">
+        <div class="card-block">
+          <h5 class="card-title">{{ context.show_datalist_0.Title }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+    <!-- Ici ajouter des classes pour aligner les items, probablement 'justify-content-between' -->
+    <!-- Boucle sur tes suggestions -->
+    <!-- <div class="card-columns" style='column-count: 5'> -->
+    {% for show in context.show_datalist_1 %}
+    <!-- for show in context.show_datalist[1:]  -->
+    <div class="col">
+      <div class="card border-transparent bg-transparent" style="cursor:pointer" onclick="updateMovie({{show}})">
+        <img class="card-img-top img-fluid" src={{ show.Poster }} alt="Card image cap">
+        <div class="card-block">
+          <h5 class="card-title">{{ show.Title }}</h5>
+        </div>
+        <!-- <div class="card-block">
+            <form class='form-inline' action="/add" method="post">{% csrf_token %}
+              <button type="submit" class="btn btn-danger-outline">Add</button>
+              <input type="hidden" name="show_id" value="{{show.Title}}">
+              <input type="hidden" name="runningStatus" value="{{show.Title}}">
+            </form>
+          </div> -->
+      </div>
+    </div>
+    {% endfor %}
+    <!-- </div> -->
+    <!-- <div class="col-auto"> -->
+    <!-- Template movie_preview-->
+    <!-- </div> -->
+    <!-- Fin boucle -->
+  </div>
+  <div class="row mt-5">
+    <div class="col-auto">
+      <img id="selectedMoviePoster" class="card-img-top img-fluid" src={{ context.show_datalist_0.Poster }} alt="Card image cap">
+    </div>
+    <div class="col">
+      <h3 id="selectedMovieTitle">{{ context.show_datalist_0.Title }}</h3>
+      <h5 id="selectedMovieActors">{{ context.show_datalist_0.Actors }}</h5>
+      <h5 id="selectedMovieAwards">{{ context.show_datalist_0.Awards }}</h5>
+      <h5 id="selectedMovieDirector">Directed by : {{ context.show_datalist_0.Director }}</h5>
+      <p id ="selectedMovieLanguage">Language : {{context.show_datalist_0.Language }}</p>
+      <p id="selectedMovieRuntime">Duration : {{ context.show_datalist_0.Runtime }} </p>
+      <p id="selectedMovieReleased">Released : {{ context.show_datalist_0.Released }} </p>
+      <p id="selectedMoviePlot">Plot : {{ context.show_datalist_0.Plot }}</p>
+      <p id="selectedMovieIMDB">Imdb rating : {{ context.show_datalist_0.imdbRating }}</p>
+      {% for genre in context.show_datalist_0.Genre %}
+            <span id="selectedMovieGenre" class="badge badge-primary">{{genre}}</span>
+      {% endfor %}
+    </div>
+  </div>
+
+</div>
+{% endblock %}

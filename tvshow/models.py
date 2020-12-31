@@ -32,7 +32,8 @@ class Show(models.Model):
 		self.seriesName = data['seriesName']
 		self.slug = slugify(self.seriesName)
 		self.overview = data['overview']
-		self.banner = 'http://thetvdb.com/banners/' + data['banner']
+	#	self.banner = 'http://thetvdb.com/banners/graphical' + data['banner']
+		self.banner = data['banner']
 		self.imbdID = data['imdbID']
 		self.tvdbID = data['tvdbID']
 		self.siteRating = data['siteRating']

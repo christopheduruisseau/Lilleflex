@@ -7,7 +7,7 @@ urlpatterns = [
     url(r'^delete_show', delete_show),
     url(r'^update_rating', update_show_rating),
     url(r'^recommended', recommended),
-    url(r'^add_search', add_search),
+    url(r'^add_search', add_search, name='add_search'),
     url(r'^add', add),
     url(r'^search', search, name='search'),
     url(r'^show/(?P<show_slug>[a-zA-Z0-9-]*$)', single_show),

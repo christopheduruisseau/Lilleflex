@@ -11,20 +11,20 @@
 </div>
 <br><br>
 {% if context.Flag %}
-<div class="card-columns">
+<div class="card-columns" style='column-count: 4'> 
   {% for show in context.show_datalist %}
   <div class="card">
-    <img class="card-img-top img-fluid" src="http://thetvdb.com/banners/{{show.banner}}" alt="Card image cap">
+    <img class="card-img-top img-fluid" src="https://www.geekgeneration.fr/wp-content/uploads/2019/06/Toy-Story-4-2.jpg" alt="Card image cap">
     <div class="card-block">
-      <h4 class="card-title">{{show.seriesName}}</h4>
-      <p class="card-text">{{show.overview}}</p>
-      <p class="card-text"><small class="text-muted">First aired {{show.firstAired}}</small></p>
+      <h4 class="card-title">{{show.Title}}</h4>
+      <p class="card-text">{{show.Title}}</p>
+      <p class="card-text"><small class="text-muted">First aired {{show.Title}}</small></p>
     </div>
     <div class="card-block">
       <form class='form-inline' action="/add" method="post">{% csrf_token %}
         <button type="submit" class="btn btn-danger-outline">Add</button>
-        <input type="hidden" name="show_id" value="{{show.id}}">
-        <input type="hidden" name="runningStatus" value="{{show.status}}">
+        <input type="hidden" name="show_id" value="{{show.Title}}">
+        <input type="hidden" name="runningStatus" value="{{show.Title}}">
       </form>
     </div>
   </div>
