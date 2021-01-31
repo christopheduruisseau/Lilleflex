@@ -1,7 +1,7 @@
 # Lilleflex
 Recommandation system made using Sklearn.<br/>
 
-Using http://imdb.com for datas.
+Using http://imdb.com for datas.<br/>
 Inspired from https://github.com/jamienicol/episodes
 
 Requirements:
